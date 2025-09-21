@@ -26,10 +26,15 @@ class ContactService
     {
         try {
             $data = $source->getContactData();
-
             Log::info('Creating contact with data', $data);
+            $find = [
+                'source_type' => $data['source_type'],
+                'source_id'   => $data['source_id'],
+            ];
 
-            return Contact::create($data);
+            $contact = Contact::updateOrCreate($find, $data);
+            Log::info('Contact created/updated successfully', ['contact_id' => $contact->id]);
+            return $contact;
         } catch (Exception $e) {
             Log::error('Failed to create contact', [
                 'error' => $e->getMessage(),

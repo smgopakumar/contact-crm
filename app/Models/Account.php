@@ -15,4 +15,9 @@ class Account extends Model
         'email',
         'phone',
     ];
+
+    public function contact()
+    {
+        return $this->morphOne(Contact::class, 'source');
+    }
 }

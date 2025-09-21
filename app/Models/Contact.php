@@ -16,4 +16,9 @@ class Contact extends Model
         'source_type',
         'source_id',
     ];
+
+    public function source()
+    {
+        return $this->morphTo();
+    }
 }

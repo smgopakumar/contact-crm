@@ -15,11 +15,9 @@ class Lead extends Model
         'phone',
     ];
 
-    /**
-     * A lead can have many contacts (polymorphic relation).
-     */
-    public function contacts()
+
+    public function contact()
     {
-        return $this->morphMany(Contact::class, 'source');
+        return $this->morphOne(Contact::class, 'source');
     }
 }
